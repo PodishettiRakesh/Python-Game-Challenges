@@ -50,3 +50,31 @@ def comment_Post(platform,PostIndex,comment):
 # platform=createPost(platform,content)
 # platform=likePost(platform,1)
 # print(comment_Post(platform,1,"That's Great"))
+
+def startPlatform():
+    print("welcome to the social media platform")
+    platform=initializePlatform()
+    while True:
+        print("1 >> create new post")
+        print("2 >> view platform Timeline")
+        print("3 >> like post")
+        print("4 >> comment post")
+        print("5 >> exit")
+
+        userChoice=int(input("please select your option: "))
+        if userChoice==1:
+            content=input("please add your post content: ")
+            platform=createPost(platform,content)
+        if userChoice==2:
+            viewTimeline(platform)
+
+        if userChoice==3:
+            postIndex=int(input("please enter your PostIndex: "))
+            platform=likePost(platform,postIndex)
+        if userChoice==4:
+            postIndex=int(input("please enter your PostIndex: "))
+            comment=input("enter your comment: ")
+            platform=comment_Post(platform,postIndex,comment)
+        if userChoice==5:
+            break
+startPlatform()
