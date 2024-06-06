@@ -36,4 +36,38 @@ def makePayment(wallet,amount):
 # makePayment(wallet,30)
 # print(wallet)
 # display_balance(wallet)
+
+def transaction_History(wallet):
+    transc=wallet["Trans_History"]
+    return f"Your wallet transaction history: {transc}"
+
+# wallet=initializeWallet()
+# addFunds(wallet,100)
+# makePayment(wallet,30)
+# print(transaction_History(wallet))
     
+def useWallet():
+    print("Welcome to the digital wallet")
+    wallet=initializeWallet()
+    while True:
+        print("1 >> View balance")
+        print("2 >> Add Funds")
+        print("3 >> Make a Payment")
+        print("4 >> View trans history")
+        print("5 >> Exit")
+        user_choice=int(input("please enter your chouce: "))
+        if user_choice==1:
+            display_balance(wallet)
+        if user_choice==2:
+            amount=int(input("enter your amount to add: "))
+            addFunds(wallet,amount)
+        if user_choice==3:
+            amount=(int(input("enter your amount to make payment: ")))
+            makePayment(wallet,amount)
+        if user_choice==4:
+            print(transaction_History(wallet))
+        if user_choice==5:
+            break
+    print("Thanks for using digita wallet")
+
+useWallet()
