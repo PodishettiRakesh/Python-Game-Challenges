@@ -23,3 +23,16 @@ def viewTimeline(platform):
 # content="solving given challenges"
 # platform=createPost(platform,content)
 # viewTimeline(platform)
+
+def likePost(platform,PostIndex):
+    if PostIndex >= len(platform):
+        return "Invalid post index"
+    post=platform[PostIndex]
+    post["likes"]+=1
+    return platform
+# platform=initializePlatform()
+# content="currently working on cspp"
+# platform=createPost(platform,content)
+# content="solving given challenges"
+# platform=createPost(platform,content)
+# print(likePost(platform,1))
