@@ -21,4 +21,19 @@ def addFunds(wallet,amount):
 # wallet=initializeWallet()
 # addFunds(wallet,100)
 # display_balance(wallet)
+
+def makePayment(wallet,amount):
+    if amount>wallet["balance"]:
+        print("insufficient funds in your wallet")
+    else:
+        wallet["balance"]-=amount
+        wallet["Trans_History"].append(-amount)
+        print("payment done succesfully")
+        return 
+wallet=initializeWallet()
+addFunds(wallet,100)
+display_balance(wallet)
+makePayment(wallet,30)
+print(wallet)
+display_balance(wallet)
     
