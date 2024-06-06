@@ -36,3 +36,17 @@ def likePost(platform,PostIndex):
 # content="solving given challenges"
 # platform=createPost(platform,content)
 # print(likePost(platform,1))
+
+def comment_Post(platform,PostIndex,comment):
+    if PostIndex >= len(platform):
+        return "Invalid post index"
+    post=platform[PostIndex]
+    post["comments"].append(comment)
+    return platform
+# platform=initializePlatform()
+# content="currently working on cspp"
+# platform=createPost(platform,content)
+# content="solving given challenges"
+# platform=createPost(platform,content)
+# platform=likePost(platform,1)
+# print(comment_Post(platform,1,"That's Great"))
