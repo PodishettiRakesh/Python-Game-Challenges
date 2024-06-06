@@ -30,10 +30,10 @@ def makePayment(wallet,amount):
         wallet["Trans_History"].append(-amount)
         print("payment done succesfully")
         return 
-wallet=initializeWallet()
-addFunds(wallet,100)
-display_balance(wallet)
-makePayment(wallet,30)
-print(wallet)
-display_balance(wallet)
+# wallet=initializeWallet()
+# addFunds(wallet,100)
+# display_balance(wallet)
+# makePayment(wallet,30)
+# print(wallet)
+# display_balance(wallet)
     
