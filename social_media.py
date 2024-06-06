@@ -13,3 +13,13 @@ def createPost(platform,content):
 # plat=initializePlatform()
 # content="currently working on cspp"
 # print(createPost(plat,content))
+
+def viewTimeline(platform):
+    for each in platform:
+        print(each)
+# platform=initializePlatform()
+# content="currently working on cspp"
+# platform=createPost(platform,content)
+# content="solving given challenges"
+# platform=createPost(platform,content)
+# viewTimeline(platform)
