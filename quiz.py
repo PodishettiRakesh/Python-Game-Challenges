@@ -9,7 +9,7 @@ def parseQuestions(data):
     all_Questions=[]
     for question in questions:
         question=question.split(":")
-        print(question)
+        # print(question)
         dic={}
         dic["question_text"]=question[0]
         dic["choices"]=question[1].split(",")
@@ -21,3 +21,14 @@ def parseQuestions(data):
 # data=loadData()
 # print(parseQuestions(data))
 
+def startQuiz(questions):
+    for question in questions:
+        print(question["question_text"])
+        choices=question["choices"]
+        for i in choices:
+            print(i,end=" ")
+        print()
+        
+data=loadData()
+questions=parseQuestions(data)
+startQuiz(questions)
