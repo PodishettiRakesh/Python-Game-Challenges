@@ -28,7 +28,13 @@ def startQuiz(questions):
         for i in choices:
             print(i,end=" ")
         print()
-        
-data=loadData()
-questions=parseQuestions(data)
-startQuiz(questions)
+        userChoice=input("please enter your option: ")
+        question["userChoice"]=userChoice
+        if userChoice==question["correct_option"]:
+            question["score"]=question["max_marks"]
+        else:
+            question["score"]=question["penality"]
+    return questions
+# data=loadData()
+# questions=parseQuestions(data)
+# print(startQuiz(questions))
