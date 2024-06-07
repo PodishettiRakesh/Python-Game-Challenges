@@ -55,3 +55,10 @@ def scoreReport(questions):
 # questions=parseQuestions(data)
 # questions=startQuiz(questions)
 # scoreReport(questions)
+
+def runQuiz():
+    data=loadData()
+    questions=parseQuestions(data)
+    questions=startQuiz(questions)
+    scoreReport(questions)
+runQuiz()
