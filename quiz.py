@@ -1,14 +1,21 @@
 def loadData():
-    f=open("questions.txt","r")
-    data=f.read()
+    try:
+        with open("questions.txt", "r")as f:
+            data=f.read()
+    except FileNotFoundError:
+        print(f"error: file not found")
     return data
 # print(loadData())
+
 
 def parseQuestions(data):
     questions=data.split("\n")
     all_Questions=[]
     for question in questions:
         question=question.split(":")
+        if len(question)!=5:
+            print("skipping in valid question foramt")
+            continue
         # print(question)
         dic={}
         dic["question_text"]=question[0]
@@ -23,18 +30,27 @@ def parseQuestions(data):
 
 def startQuiz(questions):
     for question in questions:
-        print(question["question_text"])
+        print("\n"+ question["question_text"])
         choices=question["choices"]
         for i in choices:
             print(i,end=" ")
         print()
-        userChoice=input("please enter your option: ")
+        while True:
+            try:
+                userChoice=int(input("please enter your choice: "))
+                if 1<=userChoice<=len(choices):
+                    break
+                else:
+                    print("Invalid option number, please try again later")
+            except ValueError:
+                print("please enter valid number!")
         question["userChoice"]=userChoice
-        if userChoice==question["correct_option"]:
+        if str(userChoice)==question["correct_option"]:
             question["score"]=question["max_marks"]
         else:
             question["score"]=question["penality"]
     return questions
+    
 # data=loadData()
 # questions=parseQuestions(data)
 # print(startQuiz(questions))
