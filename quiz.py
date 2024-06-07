@@ -38,3 +38,20 @@ def startQuiz(questions):
 # data=loadData()
 # questions=parseQuestions(data)
 # print(startQuiz(questions))
+
+def scoreReport(questions):
+    total_score=0
+    for question in questions:
+        if question["userChoice"]==question["correct_option"]:
+            score=int(question["score"])
+            print(f"correct answer! Markes awarded {score}")
+            total_score+=score
+        else:
+            score=int(question["score"])
+            print(f"wrong answer! Penality score: {score}")
+            total_score+=score
+    print(f"your total score is: {total_score}")
+# data=loadData()
+# questions=parseQuestions(data)
+# questions=startQuiz(questions)
+# scoreReport(questions)
