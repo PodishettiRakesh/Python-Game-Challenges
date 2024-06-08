@@ -1,3 +1,4 @@
+import random
 def getUserChoice():
     while True:
         try:
@@ -13,3 +14,9 @@ def getUserChoice():
 
     return userChoice
 # print(getUserChoice())
+
+def getComputerChoice():
+    options=["rock","paper","scissor"]
+    choice=random.choice(options)
+    return choice
+# print(getComputerChoice())
