@@ -32,13 +32,13 @@ def determineWinner(user,computer):
             computer_score=computer_score+1
             return "computer won"
         else:
-            user_score=user_score+1
+            user_score +=1
             return "you won"
         
     
     elif user=="scissor":
         if computer=="rock":
-            computer_score=computer_score+1
+            computer_score +=1
             return "computer won"
         else:
             user_score=user_score+1
@@ -55,7 +55,30 @@ def determineWinner(user,computer):
 # comp=getComputerChoice()
 # print(determineWinner(user,comp))
 
-def check_pattern(user_choices):
+def check_pattern(user_pattern):
+    if len(user_pattern) < 3:
+        return False
+
+    # Check for the same choice repeated
+    if all(choice == user_pattern[0] for choice in user_pattern):
+        return True
+
+    # Check for alternating choices (e.g., rock, scissors, rock, scissors, etc.)
+    if len(user_pattern) % 2 == 0:
+        half = len(user_pattern) // 2
+        if user_pattern[:half] == user_pattern[half:]:
+            return True
+
+    # Check for cyclic pattern (e.g., rock, scissors, paper, rock, scissors, paper, etc.)
+    pattern_length = len(set(user_pattern))
+    if len(user_pattern) % pattern_length == 0:
+        cycle = user_pattern[:pattern_length]
+        for i in range(0, len(user_pattern), pattern_length):
+            if user_pattern[i:i + pattern_length] != cycle:
+                return False
+        return True
+
+    return False
 
 def play():
     print("welcome to the game")
@@ -78,7 +101,7 @@ def play():
         print(f"computer choice: {comp}")
         print(determineWinner(user,comp))
 
-        if check_pattern(user):
+        if check_pattern(userpattern):
             print("You formed a pattern. You lose!")
             break
 
