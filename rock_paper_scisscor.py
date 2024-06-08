@@ -20,3 +20,40 @@ def getComputerChoice():
     choice=random.choice(options)
     return choice
 # print(getComputerChoice())
+
+def determineWinner(user,computer):
+    if user==computer:
+        return "It's Tie"
+    elif user=="rock":
+        if computer=="paper":
+            return "computer won"
+        else:
+            return "you won"
+    
+    elif user=="scissor":
+        if computer=="rock":
+            return "computer won"
+        else:
+            return "you won"
+
+    elif user=="paper":
+        if computer=="scissor":
+            return "computer won"
+        else:
+            return "you won"
+# user=getUserChoice()
+# comp=getComputerChoice()
+# print(determineWinner(user,comp))
+
+def play():
+    print("welcome to the game")
+    
+    while True:
+        user=getUserChoice()
+        comp=getComputerChoice()
+        print(determineWinner(user,comp))
+
+        play=input("y for play again: ")
+        if play!="y":
+            break
+play()
