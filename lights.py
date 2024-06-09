@@ -37,13 +37,49 @@ def get_user():
             print("enter valid light positions")
 
 def toggle_light(grid,row,col):
-    for i in range(max(0,row-1),min(5,row+2)):
-        for j in range(max(0,col-1),min(5,col+2)):
-            if grid[i][j]==1:
-                grid[i][j]=0
-            else:
-                grid[i][j]=1
+    #code snippet to toggel adjacent lights along with diagonal lights also
+    # for i in range(max(0,row-1),min(5,row+2)):
+    #     for j in range(max(0,col-1),min(5,col+2)):
+    #         if grid[i][j]==1:
+    #             grid[i][j]=0
+    #         else:
+    #             grid[i][j]=1
+    # return grid
+
+    # Top light
+    if row>0: 
+        if grid[row-1][col]==0:
+            grid[row-1][col]=1
+        else:
+            grid[row-1][col]=0
+    # Bottom light
+    if row<4:
+        if grid[row+1][col]==0:
+            grid[row+1][col]=1
+        else:
+            grid[row+1][col]=0
+    # left light
+    if col>0:
+        if grid[row][col-1]==0:
+            grid[row][col-1]=1
+        else:
+            grid[row][col-1]=0
+
+    # right light
+    if col<4:
+        if grid[row][col+1]==0:
+            grid[row][col+1]=1
+        else:
+            grid[row][col+1]=0
+
+    if grid[row][col]==0:
+            grid[row][col]=1
+    else:
+        grid[row][col]=0
     return grid
+        
+        
+
 # grid=initialize_grid()
 # print(grid)
 # print_grid(grid)
