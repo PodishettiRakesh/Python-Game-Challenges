@@ -59,4 +59,20 @@ def check_win(grid):
             if j!=0:
                 return False
     return True
-print(check_win(initialize_grid()))
+# print(check_win(initialize_grid()))
+
+def play_game():
+    print("welcome to the lights Out game")
+    grid=initialize_grid()
+    while True:
+        print_grid(grid)
+        choice=input("enter Y to choose light to off or else exit: ")
+        choice=choice.lower()
+        if choice=="Y":
+            break
+        else:
+            choose=get_user()
+            row=choose[0]
+            col=choose[1]
+            grid=toggle_light(grid,row,col)
+play_game()
