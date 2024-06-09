@@ -19,6 +19,20 @@ def print_grid(grid):
 def get_user():
     while True:
         try:
-            row=int(input("please enter "))
+            row=int(input("please enter your row: "))
+            if 0<=row<=4:
+                while True:
+                    try:
+                        col=int(input("please enter your col position: "))
+                        if 0<=col<=4:
+                            return row,col
+                        else:
+                            print("Invalid col position")
+                    except:
+                        print("enter valid light positions")
+                
+            else:
+                print("Invalid row position")
         except ValueError:
             print("enter valid light positions")
+# print(get_user())
