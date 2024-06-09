@@ -35,4 +35,3 @@ def get_user():
                 print("Invalid row position")
         except ValueError:
             print("enter valid light positions")
-# print(get_user())
