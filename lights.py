@@ -15,3 +15,10 @@ def print_grid(grid):
             print(j,end="  ")
         print()
 # print_grid(initialize_grid())
+
+def get_user():
+    while True:
+        try:
+            row=int(input("please enter "))
+        except ValueError:
+            print("enter valid light positions")
