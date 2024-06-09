@@ -78,16 +78,6 @@ def toggle_light(grid,row,col):
         grid[row][col]=0
     return grid
         
-        
-
-# grid=initialize_grid()
-# print(grid)
-# print_grid(grid)
-# row=2
-# col=3
-# grid=toggle_light(grid,row,col)
-# print("===========")
-# print_grid(grid)
 
 def check_win(grid):
     for i in grid:
