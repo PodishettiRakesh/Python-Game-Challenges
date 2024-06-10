@@ -10,6 +10,4 @@ def deck_creation(deck):
 
 def dealing_cards(cards):
     return cards.pop()
-# cards=deck_creation(deck)
-# print(dealing_cards(cards))
 
