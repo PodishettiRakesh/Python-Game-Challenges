@@ -33,14 +33,26 @@ def main():
 
         if player1_Score>=21:
             print("you loss the game!")
-            break
+            return
         choice=input("enter Y to hit card or N to stand: ")
         choice=choice.lower()
         if choice=="y":
             player1.append(dealing_cards(cards))
         else:
             break
-        
 
+     
+    while Calculate_Score(player2)<17:
+        player2.append(dealing_cards(cards))
+
+    player2_score=Calculate_Score(player2)
+    print(f"dealer cards: {player2} and score is: {player2_score}")
     
+    if player1_Score>player2_score:
+        print("you are winner")
+    if player2_score>player1_Score and player2_score<21:
+        print("dealer is winner")
+
+    if player2_score>=21:
+        print("you are winner") 
 main()
