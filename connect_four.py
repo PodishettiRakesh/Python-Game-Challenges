@@ -97,7 +97,14 @@ def checkwin(grid,disc):
         return True  
     
     return False   
-            
+
+def draw(grid):
+    for i in grid:
+        for j in i:
+            if j=="_":
+                return False
+    return True
+
 def main():
     print('welcome to the connect four game')
     grid=generate_grid(6,7)
@@ -114,6 +121,9 @@ def main():
         if checkwin(grid,disc):
             display_grid(grid)
             print(f"the player{current_player+1} is winner")
+            break
+        if draw(grid):
+            print("DRAW")
             break
         else:
             current_player=1-current_player  
