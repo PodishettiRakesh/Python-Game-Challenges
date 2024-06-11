@@ -14,7 +14,7 @@ def update_stocks(stocks):
     for stock in stocks:
         stock["prev_price"]=stock["price"]
         change=random.uniform(-0.2,0.2)
-        newPrice=stock["price"]*(1+change)
+        newPrice=round(stock["price"]*(1+change),2)
         # print(newPrice)
         stock["price"]=newPrice
     return stocks
@@ -59,10 +59,22 @@ def sell_stocks(stocks,portfolio):
                     portfolio["money"]+=cost
     return portfolio
 
-def total_portfolio(portfolio):
+def total_portfolio(total_stocks,portfolio):
     amount=portfolio["money"]
-    for stock,values in portfolio.items():
+    stocks=portfolio["stocks"]
+    for value in stocks.values():
+        stock_name=value["stock"]
+        quan=value["quantity"]
+        for stock in total_stocks:
+            if stock_name==stock["name"]:
+                amount+=stock["price"]*quan
+    portfolio["money"]=amount
+    return portfolio
         
+# portfolio={'money': 1556, 'stocks': {'TATA': {'stock': 'TATA', 'quantity': 4}}}
+# stocks=generate_stocks()
+# print(total_portfolio(stocks,portfolio))
+
 
 
 def main():
@@ -85,8 +97,11 @@ def main():
             elif action=="sell":
                 sell_stocks(stocks,portfolio)
                 print(portfolio)
-            else:
+            elif action=="pass":
+                stocks=update_stocks(stocks)
                 break
-    total_portfolio(portfolio)
+            else:
+                print("your action can't be processed")
+    print(total_portfolio(stocks,portfolio))
 
 main()
