@@ -1,3 +1,4 @@
+import random
 def stocks():
     stocks=[
         {"name":"RVNL","price":100,"prev_price":100},
@@ -12,5 +13,12 @@ def stocks():
 def update_stocks(stocks):
     for stock in stocks:
         stock["prev_price"]=stock["price"]
-        change=random.randint(-0.2,0.2)
-    
+        change=random.uniform(-0.2,0.2)
+        newPrice=stock["price"]*(1+change)
+        # print(newPrice)
+        stock["price"]=newPrice
+    return stocks
+stock=stocks() 
+print(stock)
+print("------------")
+print(update_stocks(stock))
