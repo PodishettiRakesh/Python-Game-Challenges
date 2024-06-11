@@ -15,3 +15,15 @@ def display_grid(grid):
             print(j,end=" ")
         print()
 # display_grid(generate_grid(6,7))
+
+def get_user_input():
+    while True:
+        try:
+            col_num=int(input("enter your col number to drop the disc: "))
+            if col_num>7 or col_num<1:
+                print("col position out of grid")
+            else:
+                return col_num
+        except ValueError:
+            print("Error in selecting column to drop disc! try again")
+# print(get_user_input())
