@@ -20,6 +20,14 @@ def display(word):
             print(i,end=" ")
         else:
             print("_",end=" ")
-words=loadData()
-word=get_secret_word(words)
-display(word)
+# words=loadData()
+# word=get_secret_word(words)
+# display(word)
+
+def guessed_letter(letter,secretWord):
+    if letter in secretWord:
+        guessed.append(letter)
+        return True
+    return False
+# print(guessed_letter("K","ramu"))
+# print(guessed)
