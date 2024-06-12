@@ -31,7 +31,9 @@ def guessed_letter(letter,secretWord):
 def checkwin(guessed,word):
     guess=""
     for each in guessed:
-        guess+=each
+        if each in word:
+            print(each)
+            guess+=each
     if guess==word:
         return True
 def play():
@@ -43,13 +45,15 @@ def play():
     chance=8
     guessed=[]
     letters="abcdefghijklmnopqrstuvwxyz"
-    print(guessed)
+    # print(guessed)
+    display(word,guessed)
     while chance>0:
         if checkwin(guessed,word):
-            print("you revealed the won! congratulations")
+            print("you revealed and won! congratulations")
+            break
         
         print(f"you have {chance} chancess left")
-        display(word,guessed)
+        
     
         while True:
             try:
@@ -69,8 +73,8 @@ def play():
             chance-=1
         else:
             chance-=1
-            print("oops! you guessed wrong letter")
-    print("you loss the game")
+            print(f"oops! you guessed wrong letter {display(word,guessed)}")
+    print("you loss the game, went over the chances")
 
 play()
         
