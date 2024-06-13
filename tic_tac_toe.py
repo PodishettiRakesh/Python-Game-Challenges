@@ -20,3 +20,10 @@ def makeMove(board,player,row,col):
 # board1=makeMove(board,"x",1,2)
 # print("----------")
 # display_board(board1)
+
+def switch_player(current_player):
+    if current_player=="x":
+        return "o"
+    else:
+        return 'x'
+    
