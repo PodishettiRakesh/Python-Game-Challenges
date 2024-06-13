@@ -13,4 +13,9 @@ def display_board(board):
 board=generateBoard()
 display_board(board)
 
-
+def mark_number(board, num):
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == num:
+                board[i][j] = "x"
+    return board
