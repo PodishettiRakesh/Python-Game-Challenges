@@ -30,3 +30,11 @@ def getUser_Number():
                 print("Invalid input. Please enter a number between 1 and 100.")
         except ValueError:
             print("Invalid input. Please enter a number.")
+
+def checkwin(board):
+    for i in range(len(board)):
+        if all(board[i][j]=="x" for j in range(len(board[i]))):
+            return True
+        if all(board[j][i] for j in range(len(board[i]))):
+            return True
+    return False
