@@ -11,3 +11,12 @@ def display_board(board):
         print('-' * 5)
 # board=initialize_board(3)
 # display_board(board)
+
+def makeMove(board,player,row,col):
+    board[row][col]=player
+    return board
+# board=initialize_board(3)
+# display_board(board)
+# board1=makeMove(board,"x",1,2)
+# print("----------")
+# display_board(board1)
