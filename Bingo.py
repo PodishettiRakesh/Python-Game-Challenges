@@ -35,6 +35,29 @@ def checkwin(board):
     for i in range(len(board)):
         if all(board[i][j]=="x" for j in range(len(board[i]))):
             return True
-        if all(board[j][i] for j in range(len(board[i]))):
+        if all(board[j][i]=="x" for j in range(len(board[i]))):
             return True
+        
+    if all(board[i][i]=="x" for i in range(len(board))) or all(board[i][(len(board)-1)-i]=="x" for i in range(len(board[0]))):
+        return True
+        
     return False
+
+def playBingoGame():
+    print("welcome to bingo")
+
+    bingo=generateBoard()
+    display_board(bingo)
+
+    rounds=0
+    while True:
+        rounds+=1
+
+        user_num=getUser_Number()
+        bingo=mark_number(bingo, user_num)
+        display_board(bingo)
+
+        if checkwin(bingo):
+            print(f"congrats! you have won bingo in {rounds} rounds")
+            break
+playBingoGame()
