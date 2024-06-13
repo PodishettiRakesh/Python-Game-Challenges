@@ -36,6 +36,3 @@ def move(current_room,direction,rooms):
     else:
         print("you can't go that direction")
         return current_room
-# rooms=initialize_rooms()
-# print(move("start","south",rooms))
-# print(move("start","north",rooms))
