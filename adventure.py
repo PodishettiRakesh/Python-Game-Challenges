@@ -50,3 +50,14 @@ def take_item(current_room,rooms,inventory):
 # take_item(currentroom,rooms,inventory)
     
 # print(inventory)
+
+def use_item(item,inventory,rooms,current):
+    if item in inventory:
+        if item=="key" and current=="hallroom":
+            rooms[current]["north"]="garden"
+            print("you have used the key to unlock the garden way")
+        else:
+            print("you can not use this item here")
+    else:
+        print("you don't have this item")
+
