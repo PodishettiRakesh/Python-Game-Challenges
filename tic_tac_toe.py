@@ -13,8 +13,9 @@ def display_board(board):
 # display_board(board)
 
 def makeMove(board,player,row,col):
-    board[row][col]=player
-    return board
+    if 0 <= row < len(board) and 0 <= col < len(board) and board[row][col] == ' ':
+        board[row][col]=player
+        return board
 # board=initialize_board(3)
 # display_board(board)
 # board1=makeMove(board,"x",1,2)
@@ -43,3 +44,28 @@ def checkWin(board):
         return board[0][2]
 
     return None
+
+def playTicTacToe():
+    board=initialize_board(3)
+
+    current_player="x"
+    print("welcome to the tic_tac_toe game")
+
+    while True:
+        display_board(board)
+        print(f"player{current_player}'s turn ")
+        try:
+            row, col = map(int, input("Enter row and column (0, 1, or 2) separated by a space: ").split())
+        except ValueError:
+            print("Invalid input. Please enter two numbers separated by a space.")
+            continue
+        if makeMove(board, current_player, row, col):
+            if checkWin(board):
+                display_board(board)
+                print(f"Congratulations! Player {current_player} wins!")
+                break
+            current_player=switch_player(current_player)
+        else:
+            print("invalid move try again")
+
+playTicTacToe()
