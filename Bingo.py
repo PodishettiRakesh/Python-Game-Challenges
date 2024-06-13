@@ -10,8 +10,8 @@ def display_board(board):
         for j in range(len(board[i])):
             print(board[i][j],end=" ")
         print()
-board=generateBoard()
-display_board(board)
+# board=generateBoard()
+# display_board(board)
 
 def mark_number(board, num):
     for i in range(len(board)):
@@ -19,3 +19,14 @@ def mark_number(board, num):
             if board[i][j] == num:
                 board[i][j] = "x"
     return board
+
+def getUser_Number():
+    while True:
+        try:
+            number = int(input("Enter a number (1-100)"))
+            if 1 <= number <= 100:
+                return number
+            else:
+                print("Invalid input. Please enter a number between 1 and 100.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
