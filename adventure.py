@@ -36,3 +36,17 @@ def move(current_room,direction,rooms):
     else:
         print("you can't go that direction")
         return current_room
+
+def take_item(current_room,rooms,inventory):
+    if rooms[current_room]["items"]:
+        item=rooms[current_room]["items"].pop()
+        inventory.append(item)
+        print(f"{item} picked and added to inventory list")
+    else:
+        print("no items in this room")
+# rooms=initialize_rooms()
+# currentroom="livingroom"
+# inventory=[]
+# take_item(currentroom,rooms,inventory)
+    
+# print(inventory)
