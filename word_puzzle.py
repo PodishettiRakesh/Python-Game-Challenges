@@ -12,3 +12,10 @@ def grid(row,col):
     return board
 # grid(6,6)
 
+
+def readfile(filename):
+    with open(filename,"r") as file:
+        data=file.read()
+        words=data.split("\n")    
+    return words
+# print(readfile("words_puzzle.txt"))
