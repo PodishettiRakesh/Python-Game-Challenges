@@ -1,57 +1,32 @@
 import random
-def grid(row,col):
-    board=[]
-    letter=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s',
-            't','u','v','w','x','y','z']
-    for _ in range(row):
-        row=[]
-        for _ in range(col):
-            row.append(random.choice(letter))
-        board.append(row)
-    print(board)
-    return board
-# grid(6,6)
 
+# Step 1: Define the Matrix and Valid Words
+def create_matrix(row, col):
+    letters = 'abcdefghijklmnopqrstuvwxyz'
+    return [[random.choice(letters) for _ in range(col)] for _ in range(row)]
 
-def readfile(filename):
-    with open(filename,"r") as file:
-        data=file.read()
-        words=data.split("\n")    
+def read_valid_words(filename):
+    with open(filename, "r") as file:
+        words = file.read().splitlines()
     return words
-# print(readfile("words_puzzle.txt"))
 
-# def checking_horizontal(board, valid_word):
-    # for i in range(len(board)):
-    #     s=""
-    #     for j in range(len(board[0])):
-    #         s+=board[i][j]
-    #     if valid_word in s:
-    #         return True
-    # return False
-
+# Step 2: Create a Function to Check Horizontal Words
 def check_horizontal(matrix, valid_words):
-    lis=[]
+    found_words = []
     for word in valid_words:
-        word_len=len(word)
+        word_len = len(word)
         for i in range(len(matrix)):
-            new_word=""
-            for j in range(len(matrix[0])):
-                new_word+=matrix[i][j]
-            if word in new_word:
-                print("word found")
-                startIndex=new_word.index(word)
-                lis.append((word,(i,startIndex),(i,startIndex+(word_len-1))))
-            rev_word=word[::-1]
-            if rev_word in new_word:
-                print("word found")
-                startIndex=new_word.index(rev_word)
-                lis.append((word,(i,startIndex+(word_len-1),(i,startIndex))))
-    return lis
+            row_str = ''.join(matrix[i])
+            if word in row_str:
+                start_index = row_str.index(word)
+                found_words.append((word, (i, start_index), (i, start_index + word_len - 1)))
+            reversed_word = word[::-1]
+            if reversed_word in row_str:
+                start_index = row_str.index(reversed_word)
+                found_words.append((word, (i, start_index + word_len - 1), (i, start_index)))
+    return found_words
 
-
-# matrix=grid(5,6)
-# print(matrix)
-# print(check_horizontal(matrix,["cy","ad","xf","cd","amg","mg"]))
+# Step 3: Create a Function to Check Vertical Words
 def check_vertical(matrix, valid_words):
     found_words = []
     num_cols = len(matrix[0])
@@ -66,22 +41,15 @@ def check_vertical(matrix, valid_words):
             if reversed_word in col_str:
                 start_index = col_str.index(reversed_word)
                 found_words.append((word, (start_index + word_len - 1, col), (start_index, col)))
-    return found_words        
+    return found_words
 
-board=grid(6,7)
-for i in board:
-    print(i)
-print(check_vertical(board,["cy","xc","hb","df"]))
-
-
-
+# Step 4: Create a Function to Check Diagonal Words (Top-Left to Bottom-Right)
 def check_diagonal_tl_br(matrix, valid_words):
     found_words = []
     num_rows = len(matrix)
     num_cols = len(matrix[0])
     for word in valid_words:
         word_len = len(word)
-        # Check top-left to bottom-right diagonals
         for row in range(num_rows):
             for col in range(num_cols):
                 if row + word_len <= num_rows and col + word_len <= num_cols:
@@ -91,3 +59,65 @@ def check_diagonal_tl_br(matrix, valid_words):
                     if word[::-1] == diag_str:
                         found_words.append((word, (row + word_len - 1, col + word_len - 1), (row, col)))
     return found_words
+
+# Step 5: Create a Function to Check Diagonal Words (Top-Right to Bottom-Left)
+def check_diagonal_tr_bl(matrix, valid_words):
+    found_words = []
+    num_rows = len(matrix)
+    num_cols = len(matrix[0])
+    for word in valid_words:
+        word_len = len(word)
+        for row in range(num_rows):
+            for col in range(num_cols):
+                if row + word_len <= num_rows and col - word_len >= -1:
+                    diag_str = ''.join([matrix[row + k][col - k] for k in range(word_len)])
+                    if word == diag_str:
+                        found_words.append((word, (row, col), (row + word_len - 1, col - word_len + 1)))
+                    if word[::-1] == diag_str:
+                        found_words.append((word, (row + word_len - 1, col - word_len + 1), (row, col)))
+    return found_words
+
+# # Step 6: Create a Function to Validate Words in a Given Sequence
+# def validate_words(sequence, valid_words):
+#     found_words = []
+#     for word in valid_words:
+#         if word in sequence:
+#             found_words.append(word)
+#         elif word[::-1] in sequence:
+#             found_words.append(word)
+#     return found_words
+
+# Step 7: Integrate All Functions to Search the Entire Matrix
+def search_words(matrix, valid_words):
+    found_words = []
+    found_words.extend(check_horizontal(matrix, valid_words))
+    found_words.extend(check_vertical(matrix, valid_words))
+    found_words.extend(check_diagonal_tl_br(matrix, valid_words))
+    found_words.extend(check_diagonal_tr_bl(matrix, valid_words))
+    return found_words
+
+# Step 8: Display the Results
+def display_results(found_words):
+    print("Found Words:")
+    for word, start, end in found_words:
+        print(f"- {word} ({start} to {end})")
+
+# Example Usage
+if __name__ == "__main__":
+    matrix = [
+        ['t', 'h', 'i', 's'],
+        ['w', 'a', 't', 's'],
+        ['o', 'a', 'h', 'g'],
+        ['f', 'g', 'd', 't']
+    ]
+    valid_words = ['this', 'what', 'dog', 'cat']
+
+    # Display the matrix
+    for row in matrix:
+        print(' '.join(row))
+    
+    # Search for valid words
+    found_words = search_words(matrix, valid_words)
+
+    # Display the results
+    display_results(found_words)
