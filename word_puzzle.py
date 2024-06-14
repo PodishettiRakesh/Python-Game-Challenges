@@ -112,9 +112,9 @@ if __name__ == "__main__":
     ]
     valid_words = ['this', 'what', 'dog', 'cat']
 
-    # Display the matrix
-    for row in matrix:
-        print(' '.join(row))
+    # # Display the matrix
+    # for row in matrix:
+    #     print(' '.join(row))
     
     # Search for valid words
     found_words = search_words(matrix, valid_words)
